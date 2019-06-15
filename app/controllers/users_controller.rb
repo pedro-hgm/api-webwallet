@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
   
+  def index
+    users = User.all
+    if users
+      render json: users, status: :ok
+    else
+      render json: { errors: users.errors.full_messages }, status: :bad_request
+    end
+  end
+
   def create
     
     user = User.new(user_params)
