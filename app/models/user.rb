@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :accounts
   # password
   has_secure_password
 

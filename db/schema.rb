@@ -10,7 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_14_230250) do
+ActiveRecord::Schema.define(version: 2019_06_21_163729) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.decimal "balance"
+    t.string "kind"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.decimal "value"
+    t.integer "month"
+    t.text "description"
+    t.integer "category_id"
+    t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_expenses_on_account_id"
+    t.index ["category_id"], name: "index_expenses_on_category_id"
+  end
+
+  create_table "incomes", force: :cascade do |t|
+    t.decimal "value"
+    t.integer "month"
+    t.text "description"
+    t.integer "category_id"
+    t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_incomes_on_account_id"
+    t.index ["category_id"], name: "index_incomes_on_category_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false

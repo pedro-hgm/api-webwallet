@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: 9.99
+  month: 1
+  description: MyText
+  category: one
+  account: one
+
+two:
+  value: 9.99
+  month: 1
+  description: MyText
+  category: two
+  account: two
