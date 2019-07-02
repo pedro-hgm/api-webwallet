@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_21_163729) do
-
+ActiveRecord::Schema.define(version: 2019_06_25_010601) do
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.decimal "balance"
@@ -22,6 +21,13 @@ ActiveRecord::Schema.define(version: 2019_06_21_163729) do
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
+  create_table "accounts_cycles", id: false, force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.integer "cycle_id", null: false
+    t.index ["account_id", "cycle_id"], name: "index_accounts_cycles_on_account_id_and_cycle_id"
+    t.index ["cycle_id", "account_id"], name: "index_accounts_cycles_on_cycle_id_and_account_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "icon"
@@ -29,28 +35,44 @@ ActiveRecord::Schema.define(version: 2019_06_21_163729) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cycles", force: :cascade do |t|
+    t.integer "year"
+    t.integer "month"
+    t.integer "user_id"
+    t.boolean "current", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cycles_on_user_id"
+  end
+
   create_table "expenses", force: :cascade do |t|
     t.decimal "value"
+    t.integer "year"
     t.integer "month"
+    t.integer "day"
     t.text "description"
     t.integer "category_id"
     t.integer "account_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_expenses_on_account_id"
     t.index ["category_id"], name: "index_expenses_on_category_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
   create_table "incomes", force: :cascade do |t|
     t.decimal "value"
+    t.integer "year"
     t.integer "month"
+    t.integer "day"
     t.text "description"
-    t.integer "category_id"
     t.integer "account_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_incomes_on_account_id"
-    t.index ["category_id"], name: "index_incomes_on_category_id"
+    t.index ["user_id"], name: "index_incomes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,5 +81,4 @@ ActiveRecord::Schema.define(version: 2019_06_21_163729) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 end

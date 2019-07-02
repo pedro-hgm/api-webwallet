@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_many :accounts
+  has_many :incomes
+  has_many :expenses
+
   # password
   has_secure_password
 
