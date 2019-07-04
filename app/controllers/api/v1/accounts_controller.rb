@@ -43,7 +43,7 @@ module Api::V1
     def destroy
       account = Account.find(params[:id])
 
-      if account.destroy!
+      if account.destroy
         render json: { status: "SUCCESS", message: "Account deleted" }, status: :ok
       else
         render json: { errors: account.errors.full_messages }, status: :bad_request

@@ -29,6 +29,26 @@ module Api::V1
       end
     end
 
+    def update
+      income = Income.find(params[:id])
+
+      if income.update(income_params)
+        render json: { status: "SUCCESS", message: "Income updated" }, status: :ok
+      else
+        render json: { errors: income.errors.full_messages }, status: :bad_request
+      end
+    end
+
+    def destroy
+      income = Income.find(params[:id])
+
+      if income.destroy
+        render json: { status: "SUCCESS", message: "Income deleted" }, status: :ok
+      else
+        render json: { errors: income.errors.full_messages }, status: :bad_request
+      end
+    end
+
     private
 
     def income_params

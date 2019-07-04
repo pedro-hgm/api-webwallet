@@ -29,6 +29,26 @@ module Api::V1
       end
     end
 
+    def update
+      expense = Expense.find(params[:id])
+
+      if expense.update(expense_params)
+        render json: { status: "SUCCESS", message: "Expense updated" }, status: :ok
+      else
+        render json: { errors: expense.errors.full_messages }, status: :bad_request
+      end
+    end
+
+    def destroy
+      expense = Expense.find(params[:id])
+
+      if expense.destroy
+        render json: { status: "SUCCESS", message: "Expense deleted" }, status: :ok
+      else
+        render json: { errors: expense.errors.full_messages }, status: :bad_request
+      end
+    end
+
     private
 
     def expense_params

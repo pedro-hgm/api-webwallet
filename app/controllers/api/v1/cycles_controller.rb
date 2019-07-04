@@ -43,7 +43,9 @@ module Api::V1
         expenses[:date] = date
         expenses[:description] = expense.description
         expenses[:account_name] = expense.account.name
+        expenses[:account_id] = expense.account_id
         expenses[:category_name] = expense.category.name
+        expenses[:category_id] = expense.category_id
 
         cycle_expenses[index] = expenses
       end
@@ -59,6 +61,7 @@ module Api::V1
         incomes[:date] = date
         incomes[:description] = income.description
         incomes[:account_name] = income.account.name
+        incomes[:account_id] = income.account_id
 
         cycle_incomes[index] = incomes
       end
