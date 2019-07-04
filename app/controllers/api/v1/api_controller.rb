@@ -8,7 +8,7 @@ module Api::V1
       if Rails.env.development?
         request.headers["X-Api-Key"] == AUTH_DETAILS["api_key"]
       else
-        request.headers["X-Api-Key"] == AUTH_DETAILS
+        request.headers["X-Api-Key"] == ENV["AUTH_DETAILS"]
       end
     end
 
