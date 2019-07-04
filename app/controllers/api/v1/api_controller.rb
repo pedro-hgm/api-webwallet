@@ -5,7 +5,11 @@ module Api::V1
     private
 
     def has_valid_api_key?
-      request.headers["X-Api-Key"] == AUTH_DETAILS["api_key"]
+      if Rails.env.development?
+        request.headers["X-Api-Key"] == AUTH_DETAILS["api_key"]
+      else
+        request.headers["X-Api-Key"] == AUTH_DETAILS
+      end
     end
 
     def valid_api_key!
