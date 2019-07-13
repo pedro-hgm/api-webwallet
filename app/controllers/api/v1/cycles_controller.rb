@@ -76,7 +76,8 @@ module Api::V1
       end
     end
 
-    def current
+    def end_cycle
+      # ends the current cycle
       cycle = Cycle.find(params[:id])
 
       cycle.current = false

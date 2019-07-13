@@ -13,7 +13,7 @@ module Api::V1
       user = User.new(user_params)
 
       if user.save
-        render json: user.id, status: :created #{status: 'User created successfully'},
+        render json: user.id, status: :created
       else
         render json: { errors: user.errors.full_messages }, status: :bad_request
       end
@@ -21,6 +21,7 @@ module Api::V1
 
     def login
       # findind the user by the email that is passed
+      # since the email is unique to each user it shouldn't be a problem
       user = User.find_by(email: params[:email].to_s.downcase)
 
       # the authenticate method is part of the has_secure_password helper from bcrypt

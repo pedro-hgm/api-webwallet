@@ -28,13 +28,10 @@ Rails.application.routes.draw do
       end
       resources :cycles, only: [:create, :show] do
         collection do
-          post "current"
+          post "end_cycle"
           post "complete_cycle"
         end
       end
     end
   end
-
-  # * maybe definde the default value for the descriptions to "no description provided", so if the user doesn't provide one the field is filled with something instead of just being blank
-
 end

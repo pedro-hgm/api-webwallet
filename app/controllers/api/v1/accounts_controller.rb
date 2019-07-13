@@ -14,7 +14,7 @@ module Api::V1
       account = Account.find(params[:id])
       account.balance += params[:value]
       if account.save
-        render json: account, status: :created
+        render json: account, status: :ok
       else
         render json: { errors: account.errors.full_messages }, status: :bad_request
       end
