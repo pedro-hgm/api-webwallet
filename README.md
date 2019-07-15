@@ -1,24 +1,10 @@
-# README
+# WebWallet-API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+REST API created with Ruby on Rails.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Using keys to secure the API
+- gem rack-cors for cross-origin AJAX requests
+- gem bcrypt to handle secure passwords for users
+- versioning for the API
